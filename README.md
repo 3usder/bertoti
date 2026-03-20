@@ -15,7 +15,7 @@ Este repositório contém os projetos desenvolvidos para a disciplina de Laborat
 ## 📸 Evidências de Funcionamento
 
 ### Interface Web (Projeto 2)
-![Interface Web](lab3/screenshots/nome_do_seu_print_da_tela.png)
+![Interface Web](lab3/screenshots/PRINTINTERFACEWEB.png)
 
 ### Testes de API (Postman)
 - **POST:** Cadastro de novos cafés realizado com sucesso.
