@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Cafés - Fatec</title>
+    <style>
+        :root {
+            --primary: #6F4E37; /* Cor de Café */
+            --secondary: #ECB176;
+            --bg: #FED8B1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 { color: var(--primary); text-align: center; }
+
+        .form-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            flex: 1;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover { background-color: #5a3e2b; }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover { background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>☕ Sistema de Gerenciamento de Cafés</h1>
+
+    <div class="form-group">
+        <input type="text" id="coffeeId" placeholder="ID">
+        <input type="text" id="coffeeName" placeholder="Nome do Café">
+        <button onclick="salvarCafe()">Cadastrar Café</button>
+    </div>
+
+    <table id="tabelaCafes">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    const URL = '/coffees';
+
+    async function carregarCafes() {
+        try {
+            const resp = await fetch(URL);
+            const cafes = await resp.json();
+            const tbody = document.querySelector('#tabelaCafes tbody');
+            tbody.innerHTML = '';
+            cafes.forEach(c => {
+                tbody.innerHTML += `<tr><td>${c.id}</td><td>${c.name}</td></tr>`;
+            });
+        } catch (err) { console.error("Erro ao carregar", err); }
+    }
+
+    async function salvarCafe() {
+        const id = document.getElementById('coffeeId').value;
+        const name = document.getElementById('coffeeName').value;
+
+        if(!id || !name) { alert("Por favor, preencha todos os campos!"); return; }
+
+        await fetch(URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, name })
+        });
+
+        document.getElementById('coffeeId').value = '';
+        document.getElementById('coffeeName').value = '';
+        carregarCafes();
+    }
+
+    carregarCafes();
+</script>
+</body>
+</html>
