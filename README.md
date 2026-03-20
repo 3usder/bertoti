@@ -11,3 +11,17 @@ Este repositório contém os projetos desenvolvidos para a disciplina de Laborat
 2. Importe o projeto desejado no IntelliJ como um projeto Maven.
 3. Execute a classe principal.
 4. Para o Projeto 2, acesse `http://localhost:8080`.
+
+## 📸 Evidências de Funcionamento
+
+### Interface Web (Projeto 2)
+![Interface Web](lab3/screenshots/nome_do_seu_print_da_tela.png)
+
+### Testes de API (Postman)
+- **POST:** Cadastro de novos cafés realizado com sucesso.
+![Interface Web](lab3/screenshots/PRINTPOST.png)
+- **GET:** Listagem de dados persistidos no banco H2.
+![Interface Web](lab3/screenshots/PRINTGET.png)
+- **PUT/DELETE:** Manipulação de registros via rotas HTTP.
+![Interface Web](lab3/screenshots/PRINTDELETE.png)
+![Interface Web](lab3/screenshots/PRINTPUT.png)
